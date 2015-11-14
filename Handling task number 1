@@ -1,0 +1,65 @@
+package com.company;
+
+//  FIXME:  This importation wont succeed if the GetValidInput module wont be in the same path as the current file
+import com.company.GetValidInput;
+
+/**
+ * Created by INTEGRO on 11/14/2015.
+ * Description: These is my solution to task 6 and 7 in the book
+ */
+public class TaskNumber4 {
+    public static void main(String[] args)
+    {
+        //  Declaring the result list that will contain teh number of arguments that the following questions will return.
+        int[] resultList;
+
+        //  Getting the result for the task
+        resultList = taskNumber6();
+
+        //  Printing on teh dialog the result
+        System.out.println("The time expression you entered equal to" + resultList[0] + "Hours and %d Minutes." + resultList[1]);
+
+        //  Getting the result for the task
+        resultList = taskNumber7();
+
+        //  Printing on teh dialog the result
+        System.out.println("The number of kids that disqualified at the first round is" + resultList[0] +
+                " and the number of remained participates in the game after two rounds is " + resultList[1]);
+
+
+    }
+    static int[] taskNumber6()
+    {
+        /*
+         *  Task Number 6 solution.
+         */
+        //  Getting the mounts of minute from the user.
+        int timeExpressionInMinute = GetValidInput.getValidInt("Please Enter time expression in minute: ",
+                "Invalid input!!! Please Enter time expresion in minute (Non negative natural number only!): ");
+
+        //  Returning the the user input converted to tuple of Hours and minutes.
+        return new int[] {timeExpressionInMinute / 60, timeExpressionInMinute % 60};
+    }
+    static int[] taskNumber7()
+    {
+        /*
+         *  Task Number 7 Solution.
+         */
+        //  Getting the number of participants in the game from the user
+        int initialNumberOfParticipantInTheGame = GetValidInput.getValidInt(
+                "Please enter the number of participant in the game: ",
+                "Invalid input!!! Please enter the number of participant in the game (Non negative natural number only!:");
+
+        //  Returning the number of participates that disqualified after one round, and the number of remains after the second.
+        return new int[] {initialNumberOfParticipantInTheGame / 7,
+        calculateRemainParticipatesAfterOneRound( calculateRemainParticipatesAfterOneRound( initialNumberOfParticipantInTheGame ) )};
+    }
+
+    static int calculateRemainParticipatesAfterOneRound(int numberOfParticipates)
+    {
+        /*
+         *  Return: The number of remaining participate in the game after one round.
+         */
+        return numberOfParticipates - numberOfParticipates / 7;
+    }
+}
