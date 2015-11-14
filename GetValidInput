@@ -1,0 +1,98 @@
+package com.company;
+
+import java.util.Scanner;
+
+/**
+ * Created by INTEGRO on 10/7/2015.
+ * Description: These module is used for getting a valid input from the user at the consul dialog
+ */
+public class GetValidInput
+{
+    //  NOTE: There is a possibility to compact these entire module to only two function, and you will send the main
+    //        function the input type in edition,
+    //        instead of calling a specific function (like getValidLong for long input etc...)
+
+    private static Scanner inputScanner = new Scanner(System.in);
+    
+
+    static long getValidLong(String promptToUser, String inputValidityError)
+    {
+        /*
+         * Description: this function gets input and check its validity according to the type (in these case its a double)
+         */
+
+        //  printing prompt to the user
+        System.out.println(promptToUser);
+
+        while (!checkValidity('L'))
+        {
+            //  printing new prompt to the user after one fail
+            System.out.println(inputValidityError);
+
+            //  cleaning the keyboard stack
+            inputScanner.next();
+        }
+
+        return inputScanner.nextLong();
+    }
+    static int getValidInt(String promptToUser, String inputValidityError)
+    {
+        /*
+         * Description: this function gets input and check its validity according to the type (in these case its a integer)
+         */
+
+        //  printing prompt to the user
+        System.out.println(promptToUser);
+
+        while (!checkValidity('I'))
+        {
+            //  printing new prompt to the user after one fail
+            System.out.println(inputValidityError);
+
+            //  cleaning the keyboard stack
+            inputScanner.next();
+        }
+
+        return inputScanner.nextInt();
+    }
+    static String getValidString(String promptToUser, String inputValidityError)
+    {
+        /*
+         * Description: this function gets input and check its validity according to the type (in these case its a string)
+         */
+
+        //  printing prompt to the user
+        System.out.println(promptToUser);
+
+        while (!checkValidity('S'))
+        {
+            //  printing new prompt to the user after one fail
+            System.out.println(inputValidityError);
+
+            //  cleaning the keyboard stack
+            inputScanner.next();
+        }
+
+        return inputScanner.nextLine();
+    }
+
+
+
+    static boolean checkValidity (char inputType)
+    {
+
+
+        switch (inputType)
+        {
+            case 'L':
+                return (inputScanner.hasNextLong());
+            case 'I':
+                return (inputScanner.hasNextInt());
+            case 'S':
+                return (inputScanner.hasNextLine());
+            default:
+                return false;
+
+        }
+    }
+}
